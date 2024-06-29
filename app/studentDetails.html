@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Student Details - Shule</title>
+</head>
+
+<body class="bg-[#e3e3e3]">
+
+    <header class="bg-gray-800 p-4 text-white flex justify-between items-center px-12">
+        <h1 class="text-3xl">Shule</h1>
+        <nav>
+            <a href="index.html" class="mr-4">Home</a>
+            <a href="students.html" class="mr-4">Students</a>
+            <a href="courses.html">Courses</a>
+        </nav>
+    </header>
+
+    <main class="w-11/12 mx-auto">
+        <h2 class="text-2xl font-bold m-6 mb-4">Student Details :</h2>
+        <section class="p-4 flex justify-between mx-auto">
+            <div class="ml-16 px-12 flex justify-between items-center bg-[#fff] rounded-[20px] w-[20%] h-42">
+                <div class="bg-white">
+                    <p class="block text-sm font-medium text-gray-700">ID :</p>
+                    <p class="block text-sm font-medium text-gray-700">Name :</p>
+                    <p class="block text-sm font-medium text-gray-700">Age :</p>
+                </div>
+                <div>
+                    <p id="studentId" class="block text-sm font-medium text-gray-700"></p>
+                    <p id="studentName" class="block text-sm font-medium text-gray-700"></p>
+                    <p id="studentAge" class="block text-sm font-medium text-gray-700"></p>
+                </div>
+            </div>
+            <form id="courseForm" class="p-6 bg-[#fff] rounded-[20px] w-[40%]">
+                <div class="flex flex-col items-center justify-between">
+                    <label for="courseName" class="block text-sm font-medium text-gray-700">Choose a Book :</label>
+                    <select id="courseName" class="mt-2 p-2 border rounded-md w-full">
+                        <!-- Courses will be populated dynamically -->
+                    </select>
+                </div>
+                <button type="submit"
+                    class="mt-4 px-4 py-2 bg-green-800 hover:bg-green-500 text-white rounded-lg">Add</button>
+            </form>
+        </section>
+        <section class="mt-4 p-4 mx-auto">
+            <h2 class="text-2xl font-bold mb-4">My Books :</h2>
+            <div class="flex justify-center">
+                <table class="w-[80%] bg-white rounded-[12px]">
+                    <thead>
+                        <tr>
+                            <th class="py-2">ID</th>
+                            <th class="py-2">Name</th>
+                            <th class="py-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseTable" class="text-center border-t-2 border-gray-700">
+                        <!-- Courses will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/student.js"></script>
+</body>
+
+</html>
