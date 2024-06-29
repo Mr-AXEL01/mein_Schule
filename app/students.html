@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Students - Shule</title>
+</head>
+
+<style> 
+    .remove-arrow::-webkit-inner-spin-button, 
+    .remove-arrow::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    } 
+
+    .remove-arrow { 
+        -moz-appearance: textfield; 
+    } 
+</style> 
+
+<body class="bg-[#e3e3e3]">
+
+    <header class="bg-gray-800 p-4 text-white flex justify-between items-center px-12">
+        <h1 class="text-3xl">Shule</h1>
+        <nav>
+            <a href="index.html" class="mr-4">Home</a>
+            <a href="students.html" class="mr-4">Students</a>
+            <a href="courses.html">Courses</a>
+        </nav>
+    </header>
+
+    <main class="w-11/12 mx-auto">
+        <h2 class="text-2xl font-bold m-6 mb-4">Manage Students :</h2>
+        <section class="p-4 flex flex-col items-center ">
+            <form id="studentForm" class="mb-4 p-6 px-10 border-2 rounded-[20px] bg-[#fff] w-[80%]">
+                <div class="flex items-center justify-between ">
+                    <div class="mb-4">
+                        <label for="studentName" class="block text-sm font-medium text-gray-700">Name :</label>
+                        <input type="text" id="studentName" class="bg-[#d8ddf4] mt-1 p-1 text-center block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="studentId" class="block text-sm font-medium text-gray-700">CIN :</label>
+                        <input type="number" id="studentId" class="bg-[#d8ddf4] remove-arrow mt-1 p-1 text-center block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="studentAge" class="block text-sm font-medium text-gray-700">Age :</label>
+                        <input type="number" id="studentAge" class="bg-[#d8ddf4] remove-arrow mt-1 p-1 text-center block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                </div>
+                <button type="submit" class="px-4 py-2 bg-green-800 hover:bg-green-500 text-white rounded-lg">Submit</button>
+            </form>
+
+            <table class="w-[90%] mt-10 rounded-md bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2">ID</th>
+                        <th class="py-2">Name</th>
+                        <th class="py-2">Age</th>
+                        <th class="py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTable">
+                    <!-- Student rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/student.js"></script>
+</body>
+
+</html>
