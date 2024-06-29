@@ -52,26 +52,55 @@ class StudentManager {
         }
     }
 
+    // loadStudentTable() {
+    //     const studentTable = document.getElementById('studentTable');
+    //     if (studentTable) {
+    //         studentTable.innerHTML = '';
+    //         this.students.forEach(student => {
+    //             const row = document.createElement('tr');
+    //             row.style.cursor = 'pointer';
+    //             const clickAble = document.querySelectorAll('#clickAble');
+    //             row.innerHTML = `
+    //                 <td id="clickAble" class="border px-4 py-2">${student.id}</td>
+    //                 <td id="clickAble" class="border px-4 py-2">${student.name}</td>
+    //                 <td id="clickAble" class="border px-4 py-2">${student.age}</td>
+    //                 <td class="border px-4 py-2">
+    //                     <button class="bg-blue-500 text-white px-2 py-1 rounded" onclick="studentManager.editStudent(${student.id})">Edit</button>
+    //                     <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="studentManager.deleteStudent(${student.id})">Delete</button>
+    //                 </td>
+    //             `;
+    //             clickAble.addEventListener('click', () => this.goToStudentDetails(student.id));
+    //             studentTable.appendChild(row);
+    //         });
+    //     }
+    // }
+
     loadStudentTable() {
         const studentTable = document.getElementById('studentTable');
         if (studentTable) {
             studentTable.innerHTML = '';
             this.students.forEach(student => {
                 const row = document.createElement('tr');
+                row.style.cursor = 'pointer';
                 row.innerHTML = `
-                    <td class="border px-4 py-2">${student.id}</td>
-                    <td class="border px-4 py-2">${student.name}</td>
-                    <td class="border px-4 py-2">${student.age}</td>
+                    <td class="clickAble border px-4 py-2">${student.id}</td>
+                    <td class="clickAble border px-4 py-2">${student.name}</td>
+                    <td class="clickAble border px-4 py-2">${student.age}</td>
                     <td class="border px-4 py-2">
                         <button class="bg-blue-500 text-white px-2 py-1 rounded" onclick="studentManager.editStudent(${student.id})">Edit</button>
                         <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="studentManager.deleteStudent(${student.id})">Delete</button>
                     </td>
                 `;
-                row.addEventListener('click', () => this.goToStudentDetails(student.id));
                 studentTable.appendChild(row);
+    
+                const clickableCells = row.querySelectorAll('.clickAble');
+                clickableCells.forEach(cell => {
+                    cell.addEventListener('click', () => this.goToStudentDetails(student.id));
+                });
             });
         }
     }
+    
 
     editStudent(id) {
         const student = this.students.find(s => s.id == id);
