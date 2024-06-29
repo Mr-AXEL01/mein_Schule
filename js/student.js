@@ -19,6 +19,10 @@ class StudentManager {
             document.getElementById('studentForm').addEventListener('submit', this.handleStudentSubmit.bind(this));
             this.loadStudentTable();
         }
+
+        if (document.getElementById('courseForm')) {
+            document.getElementById('courseForm').addEventListener('submit', this.handleCourseSubmit.bind(this));
+        }
     }
 
     init() {
@@ -32,11 +36,37 @@ class StudentManager {
     handleStudentSubmit(event) {
         event.preventDefault();
 
-        const id = document.getElementById('studentId').value;
-        const name = document.getElementById('studentName').value;
-        const age = document.getElementById('studentAge').value;
+        const id = document.getElementById('studentId').value.trim();
+        const name = document.getElementById('studentName').value.trim();
+        const age = document.getElementById('studentAge').value.trim();
 
-        if (id && name && age) {
+        let isValid = true;
+
+        if (!id) {
+            this.showError('errorStudentId', 'ID is required');
+            isValid = false;
+        } else {
+            this.showError('errorStudentId', '');
+        }
+
+        if (!name) {
+            this.showError('errorStudentName', 'Name is required');
+            isValid = false;
+        } else {
+            this.showError('errorStudentName', '');
+        }
+
+        if (!age) {
+            this.showError('errorStudentAge', 'Age is required');
+            isValid = false;
+        } else if (isNaN(age) || age <= 0) {
+            this.showError('errorStudentAge', 'Age must be a positive number');
+            isValid = false;
+        } else {
+            this.showError('errorStudentAge', '');
+        }
+
+        if (isValid) {
             const existingStudentIndex = this.students.findIndex(student => student.id == id);
             if (existingStudentIndex >= 0) {
                 this.students[existingStudentIndex].name = name;
@@ -52,28 +82,9 @@ class StudentManager {
         }
     }
 
-    // loadStudentTable() {
-    //     const studentTable = document.getElementById('studentTable');
-    //     if (studentTable) {
-    //         studentTable.innerHTML = '';
-    //         this.students.forEach(student => {
-    //             const row = document.createElement('tr');
-    //             row.style.cursor = 'pointer';
-    //             const clickAble = document.querySelectorAll('#clickAble');
-    //             row.innerHTML = `
-    //                 <td id="clickAble" class="border px-4 py-2">${student.id}</td>
-    //                 <td id="clickAble" class="border px-4 py-2">${student.name}</td>
-    //                 <td id="clickAble" class="border px-4 py-2">${student.age}</td>
-    //                 <td class="border px-4 py-2">
-    //                     <button class="bg-blue-500 text-white px-2 py-1 rounded" onclick="studentManager.editStudent(${student.id})">Edit</button>
-    //                     <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="studentManager.deleteStudent(${student.id})">Delete</button>
-    //                 </td>
-    //             `;
-    //             clickAble.addEventListener('click', () => this.goToStudentDetails(student.id));
-    //             studentTable.appendChild(row);
-    //         });
-    //     }
-    // }
+    showError(elementId, message) {
+        document.getElementById(elementId).textContent = message;
+    }
 
     loadStudentTable() {
         const studentTable = document.getElementById('studentTable');
@@ -99,8 +110,7 @@ class StudentManager {
                 });
             });
         }
-    }
-    
+    } 
 
     editStudent(id) {
         const student = this.students.find(s => s.id == id);
@@ -172,15 +182,23 @@ class StudentManager {
         });
     }
 
+
     handleCourseSubmit(event) {
         event.preventDefault();
         const courseId = document.getElementById('courseName').value;
-        const student = this.students.find(s => s.id == this.studentId);
-        if (student && !student.courses.includes(courseId)) {
-            student.courses.push(courseId);
-            this.saveStudents();
-            this.loadStudentCourses();
-            this.loadAvailableCourses();
+    
+        if (!courseId) {
+            this.showError('errorCourseName', 'Please select a course');
+        } else {
+            this.showError('errorCourseName', '');
+    
+            const student = this.students.find(s => s.id == this.studentId);
+            if (student && !student.courses.includes(courseId)) {
+                student.courses.push(courseId);
+                this.saveStudents();
+                this.loadStudentCourses();
+                this.loadAvailableCourses();
+            }
         }
     }
 
@@ -199,12 +217,12 @@ class StudentManager {
         return urlParams.get(param);
     }
 
-    saveStudents() {
-        localStorage.setItem('students', JSON.stringify(this.students));
-    }
-
     loadStudents() {
         return JSON.parse(localStorage.getItem('students')) || [];
+    }
+
+    saveStudents() {
+        localStorage.setItem('students', JSON.stringify(this.students));
     }
 
     loadCourses() {
