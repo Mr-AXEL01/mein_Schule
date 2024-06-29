@@ -4,34 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <title>Gestion des Étudiants</title>
+  <title>Shule</title>
 </head>
 <body>
-  <header>
+  
+  <header class="bg-gray-800 p-4 text-white flex justify-between items-center px-12">
+    <h1 class="text-2xl">Shule</h1>
     <nav>
-        <h1>meinShule</h1>
-        <div>
-            <p>Students</p>
-            <p>Courses</p>
-        </div>
+      <a href="index.html" class="mr-4">Home</a>
+      <a href="students.html" class="mr-4">Students</a>
+      <a href="courses.html">Courses</a>
     </nav>
   </header>
-  <main>
-    <h2>Students List:</h2>
-    <button>
-        Add Student
-    </button>
-    <table>
-        <thead>
-            <tr>
-                
-            </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-    </table>
+  <main class="flex items-center justify-center h-screen">
+    <section class="flex justify-center items-center p-4 text-center rounded">
+      <div>
+        <h2 class="text-3xl font-bold">Welcome to Shule</h2>
+        <p class="mt-4">Manage students and courses easily.</p>
+      </div>
+    </section>
   </main>
-  <script src="app.js"></script>
+  
 </body>
 </html>
