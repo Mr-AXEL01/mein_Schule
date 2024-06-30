@@ -33,13 +33,8 @@
     <main class="w-11/12 mx-auto">
         <h2 class="text-2xl font-bold m-6 mb-4">Manage Students :</h2>
         <section class="p-4 flex flex-col items-center">
-            <form id="studentForm" class="mb-4 p-6 px-10 border-2 rounded-[20px] bg-[#fff] w-[80%]">
-                <div class="flex items-center justify-between">
-                    <div class="mb-4">
-                        <label for="studentId" class="block text-sm font-medium text-gray-700">ID :</label>
-                        <input type="number" id="studentId" class="bg-[#d8ddf4] remove-arrow mt-1 p-1 text-center block w-full rounded-md border-gray-300 shadow-sm">
-                        <span id="errorStudentId" class="error-message text-red-500"></span>
-                    </div>
+            <form id="studentForm" class="mb-4 p-6 px-10 border-2 rounded-[20px] bg-[#fff] max-w-[40%]">
+                <div class="flex items-center justify-between gap-4">
                     <div class="mb-4">
                         <label for="studentName" class="block text-sm font-medium text-gray-700">Name :</label>
                         <input type="text" id="studentName" class="bg-[#d8ddf4] mt-1 p-1 text-center block w-full rounded-md border-gray-300 shadow-sm">
@@ -54,7 +49,7 @@
                 <button type="submit" class="px-4 py-2 bg-green-800 hover:bg-green-500 text-white rounded-lg">Submit</button>
             </form>
 
-            <table class="w-[90%] mt-10 rounded-md bg-white">
+            <table class="w-[70%] mt-10 rounded-md bg-white">
                 <thead>
                     <tr>
                         <th class="py-2">ID</th>
